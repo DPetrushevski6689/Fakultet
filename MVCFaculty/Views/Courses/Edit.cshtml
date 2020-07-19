@@ -1,0 +1,76 @@
+﻿@model MVCFaculty.Models.Course
+
+@{
+    ViewData["Title"] = "Ажурирај предмет";
+}
+
+<h2>Ажурирај предмет</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Credits" class="control-label"></label>
+                <input asp-for="Credits" class="form-control" />
+                <span asp-validation-for="Credits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Semester" class="control-label"></label>
+                <input asp-for="Semester" class="form-control" />
+                <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Programme" class="control-label"></label>
+                <input asp-for="Programme" class="form-control" />
+                <span asp-validation-for="Programme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EducationLevel" class="control-label"></label>
+                <input asp-for="EducationLevel" class="form-control" />
+                <span asp-validation-for="EducationLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstTeacherId" class="control-label"></label>
+                <select asp-for="FirstTeacherId" class="form-control" asp-items="ViewBag.FirstTeacherId">
+                    <option value="">/</option>
+                </select>
+                <span asp-validation-for="FirstTeacherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondTeacherId" class="control-label"></label>
+                <select asp-for="SecondTeacherId" class="form-control" asp-items="ViewBag.SecondTeacherId">
+                    <option value="">/</option>
+                </select>
+                <span asp-validation-for="SecondTeacherId" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Зачувај" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад кон листата</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#FirstTeacherId").select2();
+            $("#SecondTeacherId").select2();
+        });
+    </script>
+}

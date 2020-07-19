@@ -1,0 +1,72 @@
+﻿@model MVCFaculty.ViewModels.TeachersSearchViewModel
+
+@{
+    ViewData["Title"] = "Наставници";
+}
+
+<h2>Листа на наставници</h2>
+<p>
+    <a asp-action="Create">Креирај нов наставник</a>
+</p>
+<hr />
+<form asp-controller="Teachers" asp-action="Index" method="get">
+    Име и презиме: <input type="text" asp-for="SFullName" />
+    Степен: <select asp-for="SDegree" asp-items="Model.Degrees">
+        <option value="">Сите</option>
+    </select>
+    Звање: <select asp-for="SRank" asp-items="Model.AcademicRanks">
+        <option value="">Сите</option>
+    </select>
+    <input type="submit" value="Филтер" />
+</form>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Teachers[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teachers[0].Degree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teachers[0].AcademicRank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teachers[0].OfficeNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teachers[0].HireDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Teachers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Degree)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcademicRank)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Избриши</a> |
+                    <a asp-controller="Admin" asp-action="TeacherProfile" asp-route-teacherId="@item.Id">Профил</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

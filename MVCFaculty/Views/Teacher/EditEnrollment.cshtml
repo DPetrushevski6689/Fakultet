@@ -1,0 +1,95 @@
+﻿@model MVCFaculty.ViewModels.TeacherEnrollmentViewModel
+@{
+    ViewData["Title"] = "Оценување на студент";
+}
+
+<h2>Оценување на студент</h2>
+<hr />
+<h5><b>@Html.DisplayNameFor(model => model.Enrollment.Course.Title)</b>: @Html.DisplayFor(model => model.Enrollment.Course.Title)</h5>
+<h5><b>@Html.DisplayNameFor(model => model.Enrollment.Semester)/@Html.DisplayNameFor(model => model.Enrollment.Year)</b>: @Html.DisplayFor(model => model.Enrollment.Semester)/@Html.DisplayFor(model => model.Enrollment.Year)</h5>
+<h5><b>@Html.DisplayNameFor(model => model.Enrollment.Student.FullName)</b>: @Html.DisplayFor(model => model.Enrollment.Student.FullName)</h5>
+<h5><b>@Html.DisplayNameFor(model => model.Enrollment.Student.StudentId)</b>: @Html.DisplayFor(model => model.Enrollment.Student.StudentId)</h5>
+<hr />
+<div class="row">
+    <form asp-action="EditEnrollment" asp-route-id="@Model.Enrollment.Id" asp-route-tId="@Model.Teacher.Id">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Enrollment.Id" />
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Enrollment.ExamPoints" class="control-label"></label>
+                <input asp-for="Enrollment.ExamPoints" class="form-control" disabled=@(Model.Enrollment.FinishDate == null ? false : true)/>
+                <span asp-validation-for="Enrollment.ExamPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.SeminalPoints" class="control-label"></label>
+                <input asp-for="Enrollment.SeminalPoints" class="form-control" disabled=@(Model.Enrollment.FinishDate == null ? false : true)/>
+                <span asp-validation-for="Enrollment.SeminalPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.ProjectPoints" class="control-label"></label>
+                <input asp-for="Enrollment.ProjectPoints" class="form-control" disabled=@(Model.Enrollment.FinishDate == null ? false : true)/>
+                <span asp-validation-for="Enrollment.ProjectPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.AdditionalPoints" class="control-label"></label>
+                <input asp-for="Enrollment.AdditionalPoints" class="form-control" disabled=@(Model.Enrollment.FinishDate == null ? false : true)/>
+                <span asp-validation-for="Enrollment.AdditionalPoints" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Зачувај" class="btn btn-default" />
+            </div>
+            <div>
+                <a asp-action="EnrollmentsLastYear" asp-route-id="@Model.Enrollment.CourseId" asp-route-tId="@Model.Teacher.Id">Назад кон студентите</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" hidden>
+                <label asp-for="Enrollment.CourseId" class="control-label"></label>
+                <input asp-for="Enrollment.CourseId" class="form-control" disabled/>
+                <span asp-validation-for="Enrollment.CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Enrollment.StudentId" class="control-label"></label>
+                <input asp-for="Enrollment.StudentId" class="form-control" disabled/>
+                <span asp-validation-for="Enrollment.StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Enrollment.Semester" class="control-label"></label>
+                <input asp-for="Enrollment.Semester" class="form-control" disabled/>
+                <span asp-validation-for="Enrollment.Semester" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Enrollment.Year" class="control-label"></label>
+                <input asp-for="Enrollment.Year" class="form-control" disabled/>
+                <span asp-validation-for="Enrollment.Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.Grade" class="control-label"></label>
+                <input asp-for="Enrollment.Grade" class="form-control" disabled=@(Model.Enrollment.FinishDate == null ? false : true)/>
+                <span asp-validation-for="Enrollment.Grade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.FinishDate" class="control-label"></label>
+                <input asp-for="Enrollment.FinishDate" class="form-control"/>
+                <span asp-validation-for="Enrollment.FinishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.SeminalUrl" class="control-label"></label>
+                <input asp-for="Enrollment.SeminalUrl" class="form-control" readonly/>
+                <span asp-validation-for="Enrollment.SeminalUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.ProjectUrl" class="control-label"></label>
+                <input asp-for="Enrollment.ProjectUrl" class="form-control" readonly/>
+                <span asp-validation-for="Enrollment.ProjectUrl" class="text-danger"></span>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

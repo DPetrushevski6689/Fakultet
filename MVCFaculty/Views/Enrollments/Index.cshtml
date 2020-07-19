@@ -1,0 +1,77 @@
+﻿@model MVCFaculty.ViewModels.EnrollmentsSearchViewModel
+
+@{
+    ViewData["Title"] = "Студенти по предмети";
+}
+
+<h2>Студенти по предмети</h2>
+<p>
+    <a asp-action="EnrollStudents">Запиши студенти</a> | <a asp-action="UnEnrollStudents">Отпиши студенти</a>
+</p>
+<hr />
+<form asp-action="Index" method="get">
+    Предмет: <input type="text" asp-for="STitle" />
+    Индекс: <input type="text" asp-for="SInd" />
+    Година: <select asp-for="SYear" asp-items="Model.Years">
+        <option value="">Сите</option>
+    </select>
+    Семестар: <select asp-for="SSem" asp-items="Model.Semesters">
+        <option value="">Сите</option>
+    </select>
+    <input type="submit" value="Филтер" />
+</form>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments[0].Course.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments[0].Student.StudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments[0].Student.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments[0].Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments[0].Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments[0].FinishDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Enrollments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Student.StudentId)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Избриши</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

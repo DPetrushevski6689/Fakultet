@@ -1,0 +1,58 @@
+﻿@model MVCFaculty.Models.Student
+@{
+    ViewData["Title"] = "Предмети за студент";
+}
+
+<h2>Листа на запишани предмети</h2>
+<h4>@Html.DisplayFor(model => model.FullNameId)</h4>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments.FirstOrDefault().Course.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments.FirstOrDefault().Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments.FirstOrDefault().Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments.FirstOrDefault().Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollments.FirstOrDefault().FinishDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Enrollments)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishDate)
+            </td>
+            <td>
+                <a asp-action="EditEnrollment" asp-route-id="@item.Id">Промени</a> |
+                <a asp-action="DetailsEnrollment" asp-route-id="@item.Id">Детали</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

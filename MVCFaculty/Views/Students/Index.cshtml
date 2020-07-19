@@ -1,0 +1,73 @@
+﻿@model MVCFaculty.ViewModels.StudentsSearchViewModel
+
+@{
+    ViewData["Title"] = "Студенти";
+}
+
+<h2>Листа на студенти</h2>
+<p>
+    <a asp-action="Create">Креирај нов студент</a>
+</p>
+<hr />
+<form asp-controller="Students" asp-action="Index" method="get">
+    Индекс: <input type="text" asp-for="SStudentId" />
+    Име и презиме: <input type="text" asp-for="SFullName" />
+    <input type="submit" value="Филтер" />
+</form>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].StudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].EnrollmentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].AcquiredCredits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].CurrentSemester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].EducationLevel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcquiredCredits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentSemester)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationLevel)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Избриши</a> |
+                    <a asp-controller="Admin" asp-action="StudentProfile" asp-route-studentId="@item.Id">Профил</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

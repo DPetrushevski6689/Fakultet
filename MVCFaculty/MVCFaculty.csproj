@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200428141717_CoursesTeachersStudents.cs" />
+    <Compile Remove="Migrations\20200428141717_CoursesTeachersStudents.Designer.cs" />
+    <Compile Remove="Migrations\20200428141859_CoursesTeachersStudents.cs" />
+    <Compile Remove="Migrations\20200428141859_CoursesTeachersStudents.Designer.cs" />
+    <Compile Remove="Migrations\20200428142503_CoursesTeachersStudents.cs" />
+    <Compile Remove="Migrations\20200428142503_CoursesTeachersStudents.Designer.cs" />
+    <Compile Remove="Migrations\20200428143159_CoursesTeachersStudents.cs" />
+    <Compile Remove="Migrations\20200428143159_CoursesTeachersStudents.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\documents\" />
+  </ItemGroup>
+
+</Project>

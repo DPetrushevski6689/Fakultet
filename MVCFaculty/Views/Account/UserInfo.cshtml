@@ -1,0 +1,54 @@
+﻿@model MVCFaculty.ViewModels.UserInfoViewModel
+@{
+    ViewData["Title"] = "Кориснички профил";
+}
+
+<h2>Мој кориснички профил</h2>
+<hr />
+<div class="row">
+    <form asp-action="UserInfo" method="post">
+        <div class="col-md-4">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserDetails"></label>
+                <input asp-for="UserDetails" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <input asp-for="Role" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Id"></label>
+                <input asp-for="Id" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="PasswordHash"></label>
+                <input asp-for="PasswordHash" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="NewPassword"></label>
+                <input asp-for="NewPassword" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Зачувај нова лозинка" class="btn btn-default" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

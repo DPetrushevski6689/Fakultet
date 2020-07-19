@@ -1,0 +1,68 @@
+﻿@model MVCFaculty.Models.Teacher
+@{
+    ViewData["Title"] = "Предмети за наставник";
+}
+
+<h2>Листа на предмети</h2>
+<h4>@Html.DisplayFor(model => Model.FullName), @Html.DisplayFor(model => Model.AcademicRank)</h4>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().Credits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().Programme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().EducationLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().FirstTeacher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoursesFirst.FirstOrDefault().SecondTeacher)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CoursesFirst.Concat(Model.CoursesSecond))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Programme)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstTeacher.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondTeacher.FullName)
+                </td>
+                <td>
+                    <a asp-action="EnrollmentsLastYear" asp-route-id="@item.Id" asp-route-tId="@Model.Id">Студенти</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

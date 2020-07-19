@@ -1,0 +1,83 @@
+﻿@model MVCFaculty.ViewModels.CoursesSearchViewModel
+
+@{
+    ViewData["Title"] = "Предмети";
+}
+
+<h2>Листа на предмети</h2>
+<p>
+    <a asp-action="Create">Креирај нов предмет</a>
+</p>
+<hr />
+<form asp-controller="Courses" asp-action="Index" method="get">
+    Наслов: <input type="text" asp-for="STitle" />
+    Семестар: <select asp-for="SSemester" asp-items="Model.Semesters">
+        <option value="">Сите</option>
+    </select>
+    Програма: <select asp-for="SProgram" asp-items="Model.Programs">
+        <option value="">Сите</option>
+    </select>
+    <input type="submit" value="Филтер" />
+</form>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].Credits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].Semester)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].Programme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].EducationLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].FirstTeacher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].SecondTeacher)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Semester)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Programme)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstTeacher.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondTeacher.FullName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Избриши</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
